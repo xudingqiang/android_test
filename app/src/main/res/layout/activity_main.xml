@@ -20,7 +20,7 @@
 
     <TextView
         android:id="@+id/txtTest2"
-        android:text="test2"
+        android:text="JNI"
         android:padding="16dp"
         android:gravity="center"
         android:background="@color/white"

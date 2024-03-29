@@ -8,13 +8,14 @@ import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.fde.test.activity.EglTestActivity;
+import com.fde.test.activity.TestBinderActivity;
 import com.fde.test.bean.WifiHistory;
+import com.fde.test.view.TestJniActivity;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -29,7 +30,7 @@ import java.util.regex.Pattern;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
-    TextView txtTest1;
+    TextView txtTest1,txtTest2,txtTest3,txtTest4;
     Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         initView();
+
+        Intent serviceIntent = new Intent(this, MyService.class);
+        startService(serviceIntent);
 //        testCmd();
 
 //        new Thread(new Runnable() {
@@ -58,12 +62,25 @@ public class MainActivity extends AppCompatActivity {
 
     private void initView(){
         txtTest1 = findViewById(R.id.txtTest1);
-        txtTest1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(context, EglTestActivity.class));
-            }
+        txtTest1.setOnClickListener(view ->{
+            startActivity(new Intent(context, EglTestActivity.class));
         });
+
+        txtTest2 = findViewById(R.id.txtTest2);
+        txtTest2.setOnClickListener(view ->{
+            startActivity(new Intent(context, TestJniActivity.class));
+        });
+
+        txtTest3 = findViewById(R.id.txtTest3);
+        txtTest3.setOnClickListener(view ->{
+            startActivity(new Intent(context, TestBinderActivity.class));
+        });
+
+        txtTest4 = findViewById(R.id.txtTest4);
+        txtTest4.setOnClickListener(view ->{
+            startActivity(new Intent(context, EglTestActivity.class));
+        });
+
     }
 
     public static String getAllIpAddress(Context context) {
